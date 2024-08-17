@@ -6,7 +6,7 @@
 #include <iostream>
 using namespace std;
 
-void inputMat(int a[100][100], int rows, int col)
+void inputMat(int a[100][100], int rows, int col) // user input matrix 
 {
     for(int i = 0; i < rows; i++)
     {
@@ -18,7 +18,7 @@ void inputMat(int a[100][100], int rows, int col)
     }
 }
 
-void dispmat(int a[100][100], int rows, int col)
+void dispmat(int a[100][100], int rows, int col) // diplaying matrix 
 {
     for(int i = 0; i < rows; i++)
     {
@@ -98,9 +98,27 @@ void rowchecker(int rc[100][100], int row, int col)
         equal = true;
     }
 }
+void transpose(int tr[100][100], int rows, int col)
+{
+    int a[100][100];
+    for(int i = 0;i<rows;i++)
+    {
+        for(int j = 0;j<col;j++)
+        {
+            a[j][i] = tr[i][j];
+        }
+    }
+    cout<<"The transpose of the matrix is: "<<endl;
+    dispmat(a, col,rows);
+}
 
 int main()
 {
+    int f[100][100];
+    cout<<"Printing a matrix"<<endl;
+    inputMat(f,3,3); 
+    dispmat(f,3,3);
+    cout<<"------------"<<endl;
     int mat1[100][100], mat2[100][100];
     int choice;
 
@@ -109,6 +127,7 @@ int main()
     cout << "2. Multiplication" << endl;
     cout << "3. Diagonal Addition" << endl;
     cout << "4. Comparing if columns in the same row are equal" << endl;
+    cout << "5 . Transposing "<< endl;
     cin >> choice;
 
     int r1, c1, r2, c2;
@@ -178,7 +197,16 @@ int main()
 
             rowchecker(mat1, r1, c1);
             break;
+        case 5: 
+            cout << "Enter the number of rows for the matrices: ";
+            cin >> r1;
+            cout << "Enter the number of columns for the matrices: ";
+            cin >> c1;
 
+            inputMat(mat1,r1,c1);
+            cout<<"Original matrix"<<endl;
+            dispmat(mat1,r1,c1);
+            transpose(mat1,r1,c1);
         default:
             cout << "Invalid choice!" << endl;
             break;
